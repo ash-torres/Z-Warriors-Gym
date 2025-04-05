@@ -1,5 +1,5 @@
 // Logo Fade Effect on Reload (for index.html)
-if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/Z-Warriors-Gym/') {
     window.addEventListener('load', () => {
         const logoOverlay = document.getElementById('logo-overlay');
         const mainContent = document.getElementById('main-content');
