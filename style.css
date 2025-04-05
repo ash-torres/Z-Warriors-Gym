@@ -1,0 +1,266 @@
+/* Reset and General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Color Block Classes */
+.color-block {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.deep-blue { background-color: #1A3C5A; color: #FFFFFF; }
+.teal-blue { background-color: #00C4E6; color: #000000; }
+.champagne { background-color: #D4A76A; color: #000000; }
+.black { background-color: #000000; color: #00C4E6; }
+.white { background-color: #FFFFFF; color: #1A3C5A; }
+
+
+#logo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.fade-logo {
+    width: 200px;
+    animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Navigation */
+.navbar {
+    background-color: #000000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: #D4A76A;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family:fantasy;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #00C4E6;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #D4A76A;
+}
+
+/* Image Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%; /* Each slide takes up 100% of the slider width */
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.slide-caption {
+    position:absolute;
+    bottom: 20px;
+    left: 15%;
+    right: 15%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+    color: #D4A76A; /* Champagne */
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.slide-caption h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.slide-caption p {
+    font-size: 1rem;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #D4A76A;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+
+/* Sections */
+section {
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    color: #D4A76A;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+/* Map Container */
+.map-container {
+    margin:50px;
+    max-width: 600px;
+    right: 60%;
+   
+}
+
+/* Section Images */
+.section-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    border-radius: 10px;
+}
+
+/* Programmes and Merch Grid */
+.programmes-grid, .merch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.programme-card, .merch-item {
+    background-color: #00C4E6;
+    padding: 2rem;
+    border-radius: 10px;
+    color: #000000;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.programme-card img, .merch-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.programme-card:hover, .merch-item:hover {
+    transform: scale(1.05);
+}
+
+/* Testimonials */
+.testimonial {
+    background-color: #D4A76A;
+    color: #000000;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.testimonial-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 1rem;
+}
+
+/* Quiz */
+.quiz-container {
+    margin-top: 2rem;
+}
+
+.quiz-container button {
+    margin: 0.5rem;
+}
+
+/* Buttons */
+button {
+    background-color: #00C4E6;
+    color: #000000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #D4A76A;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: #00C4E6;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #D4A76A;
+}
