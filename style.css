@@ -1,4 +1,4 @@
-/* Reset and General Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Color Block Classes */
+
 .color-block {
     padding: 4rem 2rem;
     text-align: center;
@@ -43,7 +43,7 @@
     100% { opacity: 0; }
 }
 
-/* Navigation */
+
 .navbar {
     background-color: #000000;
     padding: 1rem 2rem;
@@ -79,7 +79,7 @@
     color: #D4A76A;
 }
 
-/* Image Slider */
+
 .slider {
     position: relative;
     width: 100%;
@@ -141,7 +141,6 @@
 .next { right: 10px; }
 
 
-/* Sections */
 section {
     text-align: center;
 }
@@ -155,7 +154,7 @@ p {
     font-size: 1.1rem;
 }
 
-/* Map Container */
+
 .map-container {
     margin:50px;
     max-width: 600px;
@@ -163,7 +162,7 @@ p {
    
 }
 
-/* Section Images */
+
 .section-image {
     max-width: 100%;
     height: auto;
@@ -171,7 +170,7 @@ p {
     border-radius: 10px;
 }
 
-/* Programmes and Merch Grid */
+
 .programmes-grid, .merch-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -200,7 +199,7 @@ p {
     transform: scale(1.05);
 }
 
-/* Testimonials */
+
 .testimonial {
     background-color: #D4A76A;
     color: #000000;
@@ -217,7 +216,7 @@ p {
     margin-top: 1rem;
 }
 
-/* Quiz */
+
 .quiz-container {
     margin-top: 2rem;
 }
@@ -226,7 +225,7 @@ p {
     margin: 0.5rem;
 }
 
-/* Buttons */
+
 button {
     background-color: #00C4E6;
     color: #000000;
@@ -241,7 +240,7 @@ button:hover {
     background-color: #D4A76A;
 }
 
-/* Footer */
+
 footer {
     text-align: center;
     padding: 1rem;
