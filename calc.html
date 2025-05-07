@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Warriors Gym Calculator</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f4b400;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #f4b400;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0a800;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #f4b400;
+            text-align: left;
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Calculator Container -->
+    <div class="container">
+        <h1>Z Warriors Gym Calculator</h1>
+
+        <!-- Input Fields -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Enter your age">
+
+        <label for="weight">Weight (KG):</label>
+        <input type="number" id="weight" placeholder="Enter your weight">
+
+        <label for="goal">Goal:</label>
+        <select id="goal">
+            <option value="bulk">Bulk</option>
+            <option value="cut">Cut</option>
+            <option value="both">Both</option>
+        </select>
+
+        <label for="bodyPart">Body Part to Train:</label>
+        <select id="bodyPart">
+            <option value="biceps">Biceps</option>
+            <option value="triceps">Triceps</option>
+            <option value="calves">Calves</option>
+            <option value="back">Back</option>
+            <option value="abs">Abs</option>
+            <option value="forearms">Forearms</option>
+            <option value="quads">Quads</option>
+            <option value="hamstrings">Hamstrings</option>
+        </select>
+
+        <!-- Calculate Button -->
+        <button onclick="calculate()">Calculate</button>
+
+        <!-- Results -->
+        <div class="result" id="result"></div>
+
+        <!-- Video Section -->
+        <iframe id="video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // JavaScript for Calculations
+        function calculate() {
+            // Get Input Values
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const goal = document.getElementById('goal').value;
+            const bodyPart = document.getElementById('bodyPart').value;
+
+            // Validate Inputs
+            if (isNaN(age) || isNaN(weight)) {
+                alert("Please enter valid numbers for age and weight!");
+                return;
+            }
+
+            // Calculations
+            const waterIntake = (weight * 0.033).toFixed(2); // 33ml per kg of body weight
+            let calories, foodRecommendation, foodsToAvoid;
+
+            if (goal === "bulk") {
+                calories = weight * 35; // Bulk: 35 calories per kg
+                foodRecommendation = "Eat high-protein foods like chicken, eggs, rice, nuts, and healthy fats like avocado.";
+                foodsToAvoid = "Avoid sugary snacks and processed foods.";
+            } else if (goal === "cut") {
+                calories = weight * 25; // Cut: 25 calories per kg
+                foodRecommendation = "Focus on lean proteins like fish, turkey, and tofu. Add plenty of vegetables and limit carbs.";
+                foodsToAvoid = "Avoid fried foods, sugary drinks, and high-calorie snacks.";
+            } else {
+                calories = weight * 30; // Both: 30 calories per kg
+                foodRecommendation = "Balance protein, carbs, and fats. Include chicken, fish, whole grains, and vegetables.";
+                foodsToAvoid = "Avoid processed foods and excessive sugar.";
+            }
+
+            // Workout Videos
+            const workoutVideos = {
+                biceps: "https://www.youtube.com/embed/ykJmrZ5v0Oo",
+                triceps: "https://www.youtube.com/embed/6kALZikXxLc",
+                calves: "https://www.youtube.com/embed/-M4-G8p8fmc",
+                back: "https://www.youtube.com/embed/CAwf7n6Luuc",
+                abs: "https://www.youtube.com/embed/Xyd_fa5zoEU",
+                forearms: "https://www.youtube.com/embed/u8xswQnwNlE",
+                quads: "https://www.youtube.com/embed/Dy28eq2PjcM",
+                hamstrings: "https://www.youtube.com/embed/2SHsk9AzdjA"
+            };
+
+            // Display Results
+            const result = `
+                <p><strong>Water Intake:</strong> ${waterIntake} Liters/Day</p>
+                <p><strong>Calories:</strong> ${calories.toFixed(2)} Calories/Day</p>
+                <p><strong>Food Recommendation:</strong> ${foodRecommendation}</p>
+                <p><strong>Foods to Avoid:</strong> ${foodsToAvoid}</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+
+            // Display Workout Video
+            document.getElementById('video').src = workoutVideos[bodyPart];
+        }
+    </script>
+</body>
+</html>
