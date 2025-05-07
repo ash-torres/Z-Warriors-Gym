@@ -1,215 +1,117 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Z Warriors Gym - Quiz</title>
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        .quiz-container, .calculator-container {
+            margin-top: 2rem;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-in;
+        }
+        .quiz-container h3, .calculator-container h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f4b400;
+        }
+        .quiz-container button {
+            margin: 0.5rem;
+            width: 80%;
+            padding: 10px;
+            background-color: #f4b400;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .quiz-container button:hover {
+            background-color: #e0a800;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #f4b400;
+            text-align: left;
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .timer-container {
+            margin: 2rem auto;
+            text-align: center;
+            background-color: #1A3C5A;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-in;
+        }
+        .timer-container h3 {
+            color: #D4A76A;
+        }
+        .timer-display {
+            font-size: 2rem;
+            color: #00C4E6;
+            margin: 10px 0;
+        }
+        .timer-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #00C4E6;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .timer-buttons button:hover {
+            background-color: #D4A76A;
+        }
+    </style>
 </head>
 <body>
-   
-    <nav class="navbar">
-        <div class="logo">Z Warriors Gym</div>
-        <ul class="nav-links">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/quiz.html">Quiz</a></li>
-            <li><a href="/methods.html">Methods</a></li>
-            <li><a href="/programmes.html">Programmes</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/merch.html">Merch</a></li>
-            <li><a href="/testimonials.html">Testimonials</a></li>
-        </ul>
-    </nav>
+    <audio id="bg-audio" loop>
+        <source src="assets/motivational-gym-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-audio');
+            audio.volume = 0.2;
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => audio.play(), { once: true });
+            });
+        });
+    </script>
 
-    
-    <section id="quiz" class="color-block teal-blue">
-        <h2>Fitness Quiz</h2>
-        <p>Discover the perfect workout plan for you!</p>
-        <<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Z Warriors Gym Calculator</title>
-        <style>
-            /* Basic Styling */
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #1e1e1e;
-                color: #fff;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-            }
-            .container {
-                background-color: #333;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                width: 400px;
-                text-align: center;
-            }
-            h1 {
-                margin-bottom: 20px;
-                font-size: 24px;
-                color: #f4b400;
-            }
-            label {
-                display: block;
-                margin: 10px 0 5px;
-                font-weight: bold;
-            }
-            input, select {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #555;
-                border-radius: 5px;
-                background-color: #444;
-                color: #fff;
-            }
-            button {
-                width: 100%;
-                padding: 10px;
-                background-color: #f4b400;
-                border: none;
-                border-radius: 5px;
-                color: #333;
-                font-weight: bold;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #e0a800;
-            }
-            .result {
-                margin-top: 20px;
-                font-size: 16px;
-                color: #f4b400;
-                text-align: left;
-            }
-            iframe {
-                width: 100%;
-                height: 200px;
-                margin-top: 20px;
-                border-radius: 5px;
-            }
-        </style>
-    <body>
-        <!-- Calculator Container -->
-        <div class="container">
-            <h1>Z Warriors Gym Calculator</h1>
-    
-            <!-- Input Fields -->
-            <label for="age">Age:</label>
-            <input type="number" id="age" placeholder="Enter your age">
-    
-            <label for="weight">Weight (KG):</label>
-            <input type="number" id="weight" placeholder="Enter your weight">
-    
-            <label for="goal">Goal:</label>
-            <select id="goal">
-                <option value="bulk">Bulk</option>
-                <option value="cut">Cut</option>
-                <option value="both">Both</option>
-            </select>
-    
-            <label for="bodyPart">Body Part to Train:</label>
-            <select id="bodyPart">
-                <option value="biceps">Biceps</option>
-                <option value="triceps">Triceps</option>
-                <option value="calves">Calves</option>
-                <option value="back">Back</option>
-                <option value="abs">Abs</option>
-                <option value="forearms">Forearms</option>
-                <option value="quads">Quads</option>
-                <option value="hamstrings">Hamstrings</option>
-            </select>
-    
-            <!-- Calculate Button -->
-            <button onclick="calculate()">Calculate</button>
-    
-            <!-- Results -->
-            <div class="result" id="result"></div>
-    
-            <!-- Video Section -->
-            <iframe id="video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    
-        <script>
-            // JavaScript for Calculations
-            function calculate() {
-                // Get Input Values
-                const age = parseFloat(document.getElementById('age').value);
-                const weight = parseFloat(document.getElementById('weight').value);
-                const goal = document.getElementById('goal').value;
-                const bodyPart = document.getElementById('bodyPart').value;
-    
-                // Validate Inputs
-                if (isNaN(age) || isNaN(weight)) {
-                    alert("Please enter valid numbers for age and weight!");
-                    return;
-                }
-    
-                // Calculations
-                const waterIntake = (weight * 0.033).toFixed(2); // 33ml per kg of body weight
-                let calories, foodRecommendation, foodsToAvoid;
-    
-                if (goal === "bulk") {
-                    calories = weight * 35; // Bulk: 35 calories per kg
-                    foodRecommendation = "Eat high-protein foods like chicken, eggs, rice, nuts, and healthy fats like avocado.";
-                    foodsToAvoid = "Avoid sugary snacks and processed foods.";
-                } else if (goal === "cut") {
-                    calories = weight * 25; // Cut: 25 calories per kg
-                    foodRecommendation = "Focus on lean proteins like fish, turkey, and tofu. Add plenty of vegetables and limit carbs.";
-                    foodsToAvoid = "Avoid fried foods, sugary drinks, and high-calorie snacks.";
-                } else {
-                    calories = weight * 30; // Both: 30 calories per kg
-                    foodRecommendation = "Balance protein, carbs, and fats. Include chicken, fish, whole grains, and vegetables.";
-                    foodsToAvoid = "Avoid processed foods and excessive sugar.";
-                }
-    
-                // Workout Videos
-                const workoutVideos = {
-                    biceps: "https://www.youtube.com/embed/ykJmrZ5v0Oo",
-                    triceps: "https://www.youtube.com/embed/6kALZikXxLc",
-                    calves: "https://www.youtube.com/embed/-M4-G8p8fmc",
-                    back: "https://www.youtube.com/embed/CAwf7n6Luuc",
-                    abs: "https://www.youtube.com/embed/Xyd_fa5zoEU",
-                    forearms: "https://www.youtube.com/embed/u8xswQnwNlE",
-                    quads: "https://www.youtube.com/embed/Dy28eq2PjcM",
-                    hamstrings: "https://www.youtube.com/embed/2SHsk9AzdjA"
-                };
-    
-                // Display Results
-                const result = `
-                    <p><strong>Water Intake:</strong> ${waterIntake} Liters/Day</p>
-                    <p><strong>Calories:</strong> ${calories.toFixed(2)} Calories/Day</p>
-                    <p><strong>Food Recommendation:</strong> ${foodRecommendation}</p>
-                    <p><strong>Foods to Avoid:</strong> ${foodsToAvoid}</p>
-                `;
-                document.getElementById('result').innerHTML = result;
-    
-                // Display Workout Video
-                document.getElementById('video').src = workoutVideos[bodyPart];
-            }
-        </script>
-
-    
-    <footer class="color-block black">
-        <p>© 2025 Z Warriors Gym. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="https://facebook.com/zwarriorsgym" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/zwarriorsgym" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
-    <script src="script.js"></script>
-   
-</body>
-    <title>Z Warriors Gym - Quiz</title>
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-<body>
-   
     <nav class="navbar">
         <div class="logo">Z Warriors Gym</div>
         <ul class="nav-links">
@@ -223,11 +125,12 @@
         </ul>
     </nav>
 
-    
     <section id="quiz" class="color-block teal-blue">
-        <h2>Fitness Quiz</h2>
-        <p>Discover the perfect workout plan for you!</p>
+        <h2>Fitness Quiz & Calculator</h2>
+        <p>Discover the perfect workout plan for you and calculate your fitness needs!</p>
+
         <div class="quiz-container">
+            <h3>Fitness Goal Quiz</h3>
             <div id="quiz-question">
                 <p>What’s your fitness goal?</p>
                 <button onclick="selectAnswer('strength')">Build Strength</button>
@@ -238,9 +141,52 @@
                 <p>Your recommended programme: <span id="result-text"></span></p>
             </div>
         </div>
+
+        <div class="calculator-container">
+            <h3>Fitness Calculator</h3>
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="Enter your age">
+
+            <label for="weight">Weight (KG):</label>
+            <input type="number" id="weight" placeholder="Enter your weight">
+
+            <label for="goal">Goal:</label>
+            <select id="goal">
+                <option value="bulk">Bulk</option>
+                <option value="cut">Cut</option>
+                <option value="both">Both</option>
+            </select>
+
+            <label for="bodyPart">Body Part to Train:</label>
+            <select id="bodyPart">
+                <option value="biceps">Biceps</option>
+                <option value="triceps">Triceps</option>
+                <option value="calves">Calves</option>
+                <option value="back">Back</option>
+                <option value="abs">Abs</option>
+                <option value="forearms">Forearms</option>
+                <option value="quads">Quads</option>
+                <option value="hamstrings">Hamstrings</option>
+            </select>
+
+            <button onclick="calculate()">Calculate</button>
+
+            <div class="result" id="result"></div>
+
+            <iframe id="video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="timer-container">
+            <h3>Workout Timer</h3>
+            <div class="timer-display" id="timer">00:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
+        </div>
     </section>
 
-    
     <footer class="color-block black">
         <p>© 2025 Z Warriors Gym. All rights reserved.</p>
         <div class="social-icons">
@@ -249,7 +195,90 @@
             <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
     </footer>
+
     <script src="script.js"></script>
-   
+    <script>
+        function calculate() {
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const goal = document.getElementById('goal').value;
+            const bodyPart = document.getElementById('bodyPart').value;
+
+            if (isNaN(age) || isNaN(weight)) {
+                alert("Please enter valid numbers for age and weight!");
+                return;
+            }
+
+            const waterIntake = (weight * 0.033).toFixed(2);
+            let calories, foodRecommendation, foodsToAvoid;
+
+            if (goal === "bulk") {
+                calories = weight * 35;
+                foodRecommendation = "Eat high-protein foods like chicken, eggs, rice, nuts, and healthy fats like avocado.";
+                foodsToAvoid = "Avoid sugary snacks and processed foods.";
+            } else if (goal === "cut") {
+                calories = weight * 25;
+                foodRecommendation = "Focus on lean proteins like fish, turkey, and tofu. Add plenty of vegetables and limit carbs.";
+                foodsToAvoid = "Avoid fried foods, sugary drinks, and high-calorie snacks.";
+            } else {
+                calories = weight * 30;
+                foodRecommendation = "Balance protein, carbs, and fats. Include chicken, fish, whole grains, and vegetables.";
+                foodsToAvoid = "Avoid processed foods and excessive sugar.";
+            }
+
+            const workoutVideos = {
+                biceps: "https://www.youtube.com/embed/ykJmrZ5v0Oo",
+                triceps: "https://www.youtube.com/embed/6kALZikXxLc",
+                calves: "https://www.youtube.com/embed/-M4-G8p8fmc",
+                back: "https://www.youtube.com/embed/CAwf7n6Luuc",
+                abs: "https://www.youtube.com/embed/Xyd_fa5zoEU",
+                forearms: "https://www.youtube.com/embed/u8xswQnwNlE",
+                quads: "https://www.youtube.com/embed/Dy28eq2PjcM",
+                hamstrings: "https://www.youtube.com/embed/2SHsk9AzdjA"
+            };
+
+            const result = `
+                <p><strong>Water Intake:</strong> ${waterIntake} Liters/Day</p>
+                <p><strong>Calories:</strong> ${calories.toFixed(2)} Calories/Day</p>
+                <p><strong>Food Recommendation:</strong> ${foodRecommendation}</p>
+                <p><strong>Foods to Avoid:</strong> ${foodsToAvoid}</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+            document.getElementById('video').src = workoutVideos[bodyPart];
+        }
+
+        let timerInterval;
+        let seconds = 0;
+        let minutes = 0;
+
+        function updateTimer() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+            const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timer').textContent = display;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            seconds = 0;
+            minutes = 0;
+            document.getElementById('timer').textContent = '00:00';
+        }
+    </script>
 </body>
 </html>

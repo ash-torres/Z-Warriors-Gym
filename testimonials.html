@@ -1,11 +1,50 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Z Warriors Gym - Testimonials</title>
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        .submit-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            color: #fff;
+        }
+        .submit-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .submit-form input, .submit-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    
+    <audio id="bg-audio" loop>
+        <source src="assets/motivational-gym-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-audio');
+            audio.volume = 0.2;
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => audio.play(), { once: true });
+            });
+        });
+    </script>
+
     <nav class="navbar">
         <div class="logo">Z Warriors Gym</div>
         <ul class="nav-links">
@@ -19,22 +58,43 @@
         </ul>
     </nav>
 
-    
     <section id="testimonials" class="color-block champagne">
         <h2>Testimonials</h2>
         <div class="testimonial">
-            <p>"Z Warriors Gym transformed my fitness journey!"</p>
+            <p>"Z Warriors Gym transformed my fitness journey! The trainers are amazing."</p>
             <p>- Alex R.</p>
-            <img src="/assets/image1.jpg" alt="Alex R." class="testimonial-image">
+            <img src="assets/image1.jpg" alt="Alex R." class="testimonial-image">
         </div>
         <div class="testimonial">
-            <p>"The best gym for strength and motivation."</p>
+            <p>"The best gym for strength and motivation. I’ve never felt stronger!"</p>
             <p>- Mia S.</p>
-            <img src="/assets/image2.jpg" alt="Mia S." class="testimonial-image">
+            <img src="assets/image2.jpg" alt="Mia S." class="testimonial-image">
+        </div>
+        <div class="testimonial">
+            <p>"The community here is incredible. I look forward to every session!"</p>
+            <p>- Jordan K.</p>
+            <img src="assets/testimonial-jordan.jpg" alt="Jordan K." class="testimonial-image">
+        </div>
+        <div class="testimonial">
+            <p>"Thanks to Z Warriors, I’ve achieved my fitness goals faster than I thought possible."</p>
+            <p>- Taylor L.</p>
+            <img src="assets/testimonial-taylor.jpg" alt="Taylor L." class="testimonial-image">
+        </div>
+
+        <div class="submit-form">
+            <h3>Share Your Story</h3>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+
+                <label for="testimonial">Your Testimonial:</label>
+                <textarea id="testimonial" rows="5" placeholder="Tell us about your experience at Z Warriors Gym" required></textarea>
+
+                <button type="button" onclick="alert('Thank you for your testimonial! It will be reviewed soon.')">Submit</button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="color-block black">
         <p>© 2025 Z Warriors Gym. All rights reserved.</p>
         <div class="social-icons">
@@ -43,7 +103,7 @@
             <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
     </footer>
+
     <script src="script.js"></script>
-    
 </body>
 </html>

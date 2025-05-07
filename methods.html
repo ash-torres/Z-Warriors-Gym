@@ -1,52 +1,41 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Z Warriors Gym - Methods</title>
-    <link rel="stylesheet" href="/style.css">
-    
-</head>
-<body>
-   
-    <nav class="navbar">
-        <div class="logo">Z Warriors Gym</div>
-        <ul class="nav-links">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/quiz.html">Quiz</a></li>
-            <li><a href="/methods.html">Methods</a></li>
-            <li><a href="/programmes.html">Programmes</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/merch.html">Merch</a></li>
-            <li><a href="/testimonials.html">Testimonials</a></li>
-        </ul>
-    </nav>
-
-    <!-- Methods Section -->
-    <section id="methods" class="color-block champagne">
-        <h2>Our Methods</h2>
-        <p>We combine strength, discipline, and energy to help you achieve your goals.</p>
-        <img src="/assets/image2.jpg" alt="Training Methods" class="section-image">
-    </section>
-
-    <!-- Footer -->
-    <footer class="color-block black">
-        <p>© 2025 Z Warriors Gym. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="https://facebook.com/zwarriorsgym" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/zwarriorsgym" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Z Warriors Gym - Methods</title>
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        .method-item {
+            background-color: #00C4E6;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #000000;
+            font-weight: bold;
+            margin: 1rem 0;
+            animation: slideIn 1s ease-in;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-   
+    <audio id="bg-audio" loop>
+        <source src="assets/motivational-gym-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-audio');
+            audio.volume = 0.2;
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => audio.play(), { once: true });
+            });
+        });
+    </script>
+
     <nav class="navbar">
         <div class="logo">Z Warriors Gym</div>
         <ul class="nav-links">
@@ -60,14 +49,28 @@
         </ul>
     </nav>
 
-    <!-- Methods Section -->
     <section id="methods" class="color-block champagne">
         <h2>Our Methods</h2>
-        <p>We combine strength, discipline, and energy to help you achieve your goals.</p>
-        <img src="/assets/image2.jpg" alt="Training Methods" class="section-image">
+        <p>We combine strength, discipline, and energy with trendy methods that Gen Z loves!</p>
+        <div class="method-item">
+            <h3>HIIT Workouts</h3>
+            <p>High-Intensity Interval Training (HIIT) is perfect for quick, effective sessions that fit into busy schedules.</p>
+        </div>
+        <div class="method-item">
+            <h3>Functional Training</h3>
+            <p>Train movements, not muscles, with exercises that mimic real-life activities—great for overall fitness.</p>
+        </div>
+        <div class="method-item">
+            <h3>TikTok Fitness Challenges</h3>
+            <p>Join viral challenges like the Plank Challenge or 100 Burpee Challenge to stay motivated and have fun.</p>
+        </div>
+        <div class="method-item">
+            <h3>Gamified Workouts</h3>
+            <p>Turn fitness into a game with points, leaderboards, and rewards—perfect for staying engaged.</p>
+        </div>
+        <img src="assets/image2.jpg" alt="Training Methods" class="section-image">
     </section>
 
-    <!-- Footer -->
     <footer class="color-block black">
         <p>© 2025 Z Warriors Gym. All rights reserved.</p>
         <div class="social-icons">

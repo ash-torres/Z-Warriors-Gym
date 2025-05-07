@@ -1,12 +1,60 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Z Warriors Gym - Merch</title>
     <link rel="stylesheet" href="style.css">
-  
+    <style>
+        .store-section {
+            padding: 4rem 2rem;
+            background-color: #D4A76A;
+            color: #000000;
+            text-align: center;
+        }
+        .store-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .store-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .store-form input, .store-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+        }
+        .product-video {
+            width: 100%;
+            max-width: 600px;
+            height: 340px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-   
+    <audio id="bg-audio" loop>
+        <source src="assets/motivational-gym-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-audio');
+            audio.volume = 0.2;
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => audio.play(), { once: true });
+            });
+        });
+    </script>
+
     <nav class="navbar">
         <div class="logo">Z Warriors Gym</div>
         <ul class="nav-links">
@@ -20,29 +68,59 @@
         </ul>
     </nav>
 
-   
     <section id="merch" class="color-block teal-blue">
         <h2>Merchandise</h2>
         <div class="merch-grid">
             <div class="merch-item">
                 <h3>Z Warriors T-Shirt</h3>
-                <p>Show your warrior spirit with our branded tee.</p>
-                <img src="/assets/image3.jpg" alt="Z Warriors T-Shirt">
+                <p>Show your warrior spirit with our branded tee. ($25)</p>
+                <img src="assets/image3.jpg" alt="Z Warriors T-Shirt">
             </div>
             <div class="merch-item">
                 <h3>Dragon Gym Bag</h3>
-                <p>Carry your gear in style with our gym bag.</p>
-                <img src="/assets/image5.jpg" alt="Dragon Gym Bag">
+                <p>Carry your gear in style with our gym bag. ($40)</p>
+                <img src="assets/image5.jpg" alt="Dragon Gym Bag">
             </div>
             <div class="merch-item">
                 <h3>Energy Water Bottle</h3>
-                <p>Stay hydrated with our sleek water bottle.</p>
-                <img src="/assets/image4.jpg" alt="Energy Water Bottle">
+                <p>Stay hydrated with our sleek water bottle. ($15)</p>
+                <img src="assets/image4.jpg" alt="Energy Water Bottle">
+            </div>
+            <div class="merch-item">
+                <h3>Power Hoodie</h3>
+                <p>Stay warm with our cozy hoodie. ($50)</p>
+                <img src="assets/hoodie.jpg" alt="Power Hoodie">
             </div>
         </div>
+
+        <h3>Featured Product: Z Warriors T-Shirt</h3>
+        <iframe class="product-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </section>
 
-    <!-- Footer -->
+    <section class="store-section">
+        <h2>Online Store - Checkout</h2>
+        <form class="store-form">
+            <label for="product">Select Product:</label>
+            <select id="product">
+                <option value="tshirt">Z Warriors T-Shirt - $25</option>
+                <option value="bag">Dragon Gym Bag - $40</option>
+                <option value="bottle">Energy Water Bottle - $15</option>
+                <option value="hoodie">Power Hoodie - $50</option>
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1" required>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="address">Shipping Address:</label>
+            <input type="text" id="address" placeholder="Enter your address" required>
+
+            <button type="button" onclick="alert('Order placed! You will receive a confirmation soon.')">Place Order</button>
+        </form>
+    </section>
+
     <footer class="color-block black">
         <p>© 2025 Z Warriors Gym. All rights reserved.</p>
         <div class="social-icons">
