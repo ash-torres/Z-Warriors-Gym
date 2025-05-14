@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Warriors Gym - Add Testimonial</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D4A76A;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        .form-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .testimonial-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .testimonial-form label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        .testimonial-form input, .testimonial-form textarea, .testimonial-form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        .testimonial-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00C4E6;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .testimonial-form button:hover {
+            background-color: #0099B3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Z Warriors Gym</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="methods.html">Methods</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="merch.html">Merch</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+    </nav>
+
+    <section class="form-section">
+        <h2>Add Your Testimonial</h2>
+        <form class="testimonial-form" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="testimonial">Your Testimonial:</label>
+            <textarea id="testimonial" placeholder="Tell about your experience at Z Warriors Gym" rows="4" required></textarea>
+
+            <label for="image">Upload Photo (Optional):</label>
+            <input type="file" id="image" accept="image/*">
+
+            <button type="button" onclick="submitTestimonial()">Submit</button>
+        </form>
+    </section>
+
+    <footer class="color-block black">
+        <p>© 2025 Z Warriors Gym. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/zwarriorsgym" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/zwarriorsgym" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function submitTestimonial() {
+            const name = document.getElementById('name').value;
+            const testimonial = document.getElementById('testimonial').value;
+            const image = document.getElementById('image').files[0];
+
+            if (name && testimonial) {
+                alert('Thank you for your testimonial! It will be reviewed soon.');
+                window.location.href = 'testimonials.html';
+            } else {
+                alert('Please fill in the name and testimonial fields.');
+            }
+        }
+    </script>
+</body>
+</html>

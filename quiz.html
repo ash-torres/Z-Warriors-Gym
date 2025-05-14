@@ -1,11 +1,149 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Z Warriors Gym - Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Warriors Gym - Quiz & Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+        .calculator-section {
+            flex: 2;
+            padding-right: 2rem;
+        }
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f4b400;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #f4b400;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0a800;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #f4b400;
+            text-align: left;
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .timer-section {
+            flex: 1;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        #current-time {
+            font-size: 2rem;
+            color: #D4A76A;
+            margin-bottom: 1rem;
+        }
+        #timer {
+            font-size: 3rem;
+            color: #00C4E6;
+            margin-bottom: 1rem;
+        }
+        .timer-buttons button {
+            font-size: 1.2rem;
+            padding: 0.6rem 1.2rem;
+            margin: 0 0.3rem;
+            background-color: #D4A76A;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .timer-buttons button:hover {
+            background-color: #F4C891;
+        }
+        @media (max-width: 768px) {
+            .quiz-container {
+                flex-direction: column;
+            }
+            .timer-section {
+                margin-top: 2rem;
+            }
+        }
+        .audio-control {
+            position: fixed;
+            top: 100px;
+            right: 100px;
+            background-color: rgba(0, 0, 0, 0.8); /* Temporary red for visibility */
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            z-index: 1000;
+        }
+        .audio-control:hover {
+            background-color: rgba(0, 153, 179, 0.8);
+        }
+    </style>
 </head>
 <body>
-   
+    <audio id="bg-audio" loop muted>
+        <source src="assets/gym.funk.mp3" type="audio/mpeg">
+    </audio>
+    <button id="audio-control" class="audio-control" onclick="playAudio()">▶</button>
     <nav class="navbar">
         <div class="logo">Z Warriors Gym</div>
         <ul class="nav-links">
@@ -19,25 +157,73 @@
         </ul>
     </nav>
 
-    
-    <section id="quiz" class="color-block teal-blue">
-        <h2>Fitness Quiz</h2>
-        <p>Discover the perfect workout plan for you!</p>
+    <section id="quiz" class="color-block deep-blue">
+        <h1>Fitness Quiz & Calculator</h1>
+        <p>Discover the perfect workout plan for you and calculate your fitness needs!</p>
+
         <div class="quiz-container">
-            <div id="quiz-question">
-                <p>What’s your fitness goal?</p>
-                <button onclick="selectAnswer('strength')">Build Strength</button>
-                <button onclick="selectAnswer('cardio')">Improve Cardio</button>
-                <button onclick="selectAnswer('mindset')">Enhance Mindset</button>
+            <div class="calculator-section">
+                <div class="container">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Enter your age">
+
+                    <label for="weight">Weight (KG):</label>
+                    <input type="number" id="weight" placeholder="Enter your weight">
+
+                    <label for="goal">Goal:</label>
+                    <select id="goal">
+                        <option value="bulk">Bulk</option>
+                        <option value="cut">Cut</option>
+                        <option value="both">Both</option>
+                    </select>
+
+                    <label for="bodyPart">Body Part to Train:</label>
+                    <select id="bodyPart">
+                        <option value="biceps">Biceps</option>
+                        <option value="triceps">Triceps</option>
+                        <option value="calves">Calves</option>
+                        <option value="back">Back</option>
+                        <option value="abs">Abs</option>
+                        <option value="forearms">Forearms</option>
+                        <option value="quads">Quads</option>
+                        <option value="hamstrings">Hamstrings</option>
+                    </select>
+
+                    <button onclick="calculate()">Calculate</button>
+
+                    <div class="result" id="result"></div>
+
+                    <iframe id="video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
-            <div id="quiz-result" style="display: none;">
-                <p>Your recommended programme: <span id="result-text"></span></p>
+
+            <div class="timer-section">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2>Workout Timer</h2>
+                <br>
+                <div id="current-time"></div>
+                <br>
+                <div id="timer">00:00</div>
+                <br>
+                <div class="timer-buttons">
+                    <button onclick="startTimer()">Start</button>
+                    <br>
+                    <button onclick="stopTimer()">Stop</button>
+                    <br>
+                    <button onclick="resetTimer()">Reset</button>
+                </div>
+                <audio id="ding-sound" src="assets/ding.mp3"></audio>
             </div>
         </div>
     </section>
 
-    
     <footer class="color-block black">
+        
         <p>© 2025 Z Warriors Gym. All rights reserved.</p>
         <div class="social-icons">
             <a href="https://facebook.com/zwarriorsgym" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -45,7 +231,47 @@
             <a href="https://twitter.com/zwarriorsgym" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
     </footer>
+
     <script src="script.js"></script>
-   
+
+    <script>
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-audio');
+            const audioControl = document.getElementById('audio-control');
+
+            if (audio) {
+                audio.volume = 0.2;
+                if (audioControl) audioControl.style.display = 'flex';
+            }
+
+            window.playAudio = function() {
+                if (audio) {
+                    audio.muted = false;
+                    audio.play().then(() => {
+                        if (audioControl) {
+                            audioControl.textContent = '⏸';
+                            audioControl.onclick = pauseAudio;
+                        }
+                        console.log('Audio played with sound');
+                    }).catch(error => {
+                        console.error('Audio play failed:', error.message);
+                        alert('Failed to play audio. Check the console for details.');
+                    });
+                }
+            };
+
+            window.pauseAudio = function() {
+                if (audio) {
+                    audio.pause();
+                    audio.muted = true;
+                    if (audioControl) {
+                        audioControl.textContent = '▶';
+                        audioControl.onclick = playAudio;
+                    }
+                    console.log('Audio paused');
+                }
+            };
+        });
+    </script>
 </body>
 </html>
